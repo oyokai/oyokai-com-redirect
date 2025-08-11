@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OYOKAÏ Formation - Redirection</title>
+    
+    <!-- Redirection immédiate via meta refresh -->
+    <meta http-equiv="refresh" content="0; url=https://www.oyokai.fr">
+    
+    <!-- Canonical vers le domaine principal -->
+    <link rel="canonical" href="https://www.oyokai.fr">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OYOKAÏ Formation - Centre de formation moderne">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://www.oyokai.fr">
+    <meta property="og:title" content="OYOKAÏ Formation">
+    <meta property="og:description" content="Centre de formation moderne">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://www.oyokai.fr/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .redirect-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .fallback-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .fallback-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fff, #f0f0f0);
+            width: 0%;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .domain-info {
+            font-size: 0.9em;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="logo">OYOKAÏ</div>
+        <div class="message">
+            Redirection en cours vers notre site principal...
+        </div>
+        
+        <div class="spinner"></div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <div class="domain-info">
+            oyokai.com → oyokai.fr
+        </div>
+        
+        <a href="https://www.oyokai.fr" class="fallback-link">
+            Accéder directement au site
+        </a>
+    </div>
+    
+    <script>
+        // Redirection JavaScript immédiate
+        (function() {
+            // Construire l'URL de destination en conservant le chemin
+            const targetUrl = 'https://www.oyokai.fr' + window.location.pathname + window.location.search + window.location.hash;
+            
+            // Tentative de redirection immédiate
+            try {
+                window.location.replace(targetUrl);
+            } catch(e) {
+                // Fallback si replace() ne fonctionne pas
+                window.location.href = targetUrl;
+            }
+        })();
+        
+        // Sécurité : redirection forcée après 2 secondes
+        setTimeout(function() {
+            if (window.location.hostname.includes('oyokai.com')) {
+                const targetUrl = 'https://www.oyokai.fr' + window.location.pathname + window.location.search + window.location.hash;
+                window.location.href = targetUrl;
+            }
+        }, 2000);
+        
+        // Analytics optionnel (si vous voulez tracker les redirections)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'domain_redirect', {
+                'source_domain': 'oyokai.com',
+                'target_domain': 'oyokai.fr',
+                'redirect_path': window.location.pathname
+            });
+        }
+    </script>
+</body>
+</html>
